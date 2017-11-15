@@ -39,12 +39,14 @@ class SecurityController extends Controller
     {
         // FIXME: Instancier le formulaire et à la soumission enregistrer le user.
         $user = new User();
-        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-            $em->persist($form);
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
             $em->flush();
         }
         // La vue à rendre : Security/register.html.twig
