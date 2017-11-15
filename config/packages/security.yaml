@@ -27,5 +27,5 @@ security:
                 default_target_path: my_profile
 
     access_control:
-        - { path: ^/, roles: ROLE_USER }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_USER }

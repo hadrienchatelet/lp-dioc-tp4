@@ -18,6 +18,7 @@ class HomepageController extends Controller
         // FIXME: Récupérer les utilisateurs non admin
         $users = [];
 
+
         return $this->render('Homepage/homepage.html.twig', ['users' => $users]);
     }
 }
